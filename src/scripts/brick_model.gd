@@ -1,0 +1,15 @@
+extends StaticBody2D
+
+export var hit_points = 1
+
+func hit():
+	self.hit_points -= 1
+	if hit_points == 0:
+		self.queue_free()
+	else:
+		for child in self.get_children():
+			if child.has_method('get_region_rect'):
+				var old_rect = child.get_region_rect()
+				var pos = old_rect.pos
+				var new_rect = Rect2(Vector2(pos.x, pos.y - old_rect.size.y), old_rect.size)
+				child.set_region_rect(new_rect)
