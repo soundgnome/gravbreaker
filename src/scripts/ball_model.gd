@@ -11,3 +11,5 @@ func _process(delta):
 		for brick in bricks:
 			if brick.has_method('hit'):
 				brick.hit()
+				return
+		sound_controller.sfx('bounce')
