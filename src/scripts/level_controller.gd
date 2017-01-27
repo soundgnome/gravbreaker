@@ -1,7 +1,9 @@
 extends Node
 
+var nodes = {}
 var physics
 var space
+var spare_ball_count = 3
 var vectors
 
 func _ready():
@@ -14,6 +16,20 @@ func _ready():
 		'none': Vector2(0,0),
 	}
 	self.set_process(true)
+
+func end_game(ball):
+	ball.queue_free()
+
+func lose_ball(ball):
+	if self.spare_ball_count > 0:
+		self.nodes['spare_balls'].get_children()[0].queue_free()
+		self.spare_ball_count -= 1
+		reset_ball(ball)
+	else:
+		self.end_game(ball)
+
+func register_node(name, node):
+	self.nodes[name] = node
 
 func reset_ball(ball):
 	self.set_gravity('none')
