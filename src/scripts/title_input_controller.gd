@@ -11,4 +11,4 @@ func _input(event):
 			self._start_game()
 
 func _start_game():
-	self.get_tree().change_scene('res://scenes/level1.tscn')
+	self.get_tree().change_scene('res://scenes/gameworld.tscn')

@@ -1,66 +1,20 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://scripts/input_controller.gd" type="Script" id=1]
-[ext_resource path="res://scripts/ball_model.gd" type="Script" id=2]
-[ext_resource path="res://img/ball.png" type="Texture" id=3]
-[ext_resource path="res://scenes/tileset.tres" type="TileSet" id=4]
-[ext_resource path="res://scripts/brick_model.gd" type="Script" id=5]
-[ext_resource path="res://img/bricks.png" type="Texture" id=6]
+[ext_resource path="res://scenes/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/brick_model.gd" type="Script" id=2]
+[ext_resource path="res://img/bricks.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=2]
-
-custom_solver_bias = 0.0
-radius = 8.39505
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -29, -8, 29, -8, 32, -5, 32, 5, 29, 8, -29, 8, -32, 5, -32, -5 )
 
-[node name="gameworld" type="Node2D"]
-
-script/script = ExtResource( 1 )
-
-[node name="ball" type="RigidBody2D" parent="."]
-
-transform/pos = Vector2( 500, 300 )
-input/pickable = false
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-mode = 0
-mass = 1.0
-friction = 0.0
-bounce = 1.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = false
-velocity/linear = Vector2( 0, 0 )
-velocity/angular = 0.0
-damp_override/linear = -1.0
-damp_override/angular = -1.0
-script/script = ExtResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="ball"]
-
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
-
-shape = SubResource( 2 )
-trigger = false
-_update_shape_index = 0
+[node name="level" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 1 )
 cell/size = Vector2( 64, 64 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -77,9 +31,10 @@ tile_data = IntArray( 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 
 
 [node name="brick" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 288, 352 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -88,114 +43,29 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 0.0
 bounce = 1.0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 2 )
+hit_points = 1
 
 [node name="Sprite" type="Sprite" parent="brick"]
 
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 region = true
 region_rect = Rect2( 0, 16, 64, 16 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="brick"]
 
-shape = SubResource( 3 )
-trigger = false
-_update_shape_index = 0
-__meta__ = { "_edit_lock_":true }
-
-[node name="brick3" type="StaticBody2D" parent="."]
-
-transform/pos = Vector2( 576, 192 )
-input/pickable = false
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 0.0
-bounce = 1.0
-script/script = ExtResource( 5 )
-
-[node name="Sprite" type="Sprite" parent="brick3"]
-
-texture = ExtResource( 6 )
-region = true
-region_rect = Rect2( 0, 16, 64, 16 )
-__meta__ = { "_edit_lock_":true }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="brick3"]
-
-shape = SubResource( 3 )
-trigger = false
-_update_shape_index = 0
-__meta__ = { "_edit_lock_":true }
-
-[node name="brick4" type="StaticBody2D" parent="."]
-
-transform/pos = Vector2( 704, 256 )
-input/pickable = false
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 0.0
-bounce = 1.0
-script/script = ExtResource( 5 )
-
-[node name="Sprite" type="Sprite" parent="brick4"]
-
-texture = ExtResource( 6 )
-region = true
-region_rect = Rect2( 0, 16, 64, 16 )
-__meta__ = { "_edit_lock_":true }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="brick4"]
-
-shape = SubResource( 3 )
-trigger = false
-_update_shape_index = 0
-__meta__ = { "_edit_lock_":true }
-
-[node name="brick5" type="StaticBody2D" parent="."]
-
-transform/pos = Vector2( 384, 224 )
-input/pickable = false
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 0.0
-bounce = 1.0
-script/script = ExtResource( 5 )
-
-[node name="Sprite" type="Sprite" parent="brick5"]
-
-texture = ExtResource( 6 )
-region = true
-region_rect = Rect2( 0, 16, 64, 16 )
-__meta__ = { "_edit_lock_":true }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="brick5"]
-
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
 
 [node name="brick1" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 416, 416 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -204,27 +74,29 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 0.0
 bounce = 1.0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 2 )
+hit_points = 1
 
 [node name="Sprite" type="Sprite" parent="brick1"]
 
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 region = true
 region_rect = Rect2( 0, 16, 64, 16 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="brick1"]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
 
 [node name="brick2" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 640, 384 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -233,18 +105,112 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 0.0
 bounce = 1.0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 2 )
+hit_points = 1
 
 [node name="Sprite" type="Sprite" parent="brick2"]
 
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 region = true
 region_rect = Rect2( 0, 16, 64, 16 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="brick2"]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
+
+[node name="brick3" type="StaticBody2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 576, 192 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 1.0
+script/script = ExtResource( 2 )
+hit_points = 1
+
+[node name="Sprite" type="Sprite" parent="brick3"]
+
+texture = ExtResource( 3 )
+region = true
+region_rect = Rect2( 0, 16, 64, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="brick3"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
+
+[node name="brick4" type="StaticBody2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 704, 256 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 1.0
+script/script = ExtResource( 2 )
+hit_points = 1
+
+[node name="Sprite" type="Sprite" parent="brick4"]
+
+texture = ExtResource( 3 )
+region = true
+region_rect = Rect2( 0, 16, 64, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="brick4"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
+
+[node name="brick5" type="StaticBody2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 384, 224 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 0.0
+bounce = 1.0
+script/script = ExtResource( 2 )
+hit_points = 1
+
+[node name="Sprite" type="Sprite" parent="brick5"]
+
+texture = ExtResource( 3 )
+region = true
+region_rect = Rect2( 0, 16, 64, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="brick5"]
+
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }

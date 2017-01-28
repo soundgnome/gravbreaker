@@ -2,11 +2,14 @@ extends StaticBody2D
 
 export var hit_points = 1
 
+func _ready():
+	level_controller.add_brick(self)
+
 func hit():
 	self.hit_points -= 1
 	if hit_points == 0:
 		sound_controller.sfx('break')
-		self.queue_free()
+		level_controller.remove_brick(self)
 	else:
 		sound_controller.sfx('bounce')
 		self._update_sprite()

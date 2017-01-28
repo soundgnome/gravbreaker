@@ -8,6 +8,7 @@ func _ready():
 	self.set_max_contacts_reported(4)
 	self.starting_pos = self.get_pos()
 	self.set_process(true)
+	level_controller.set_ball(self)
 
 func reset_position():
 	self.set_pos(self.starting_pos)
@@ -21,7 +22,7 @@ func _check_boundary():
 	var pos = self.get_pos()
 	if pos.x < self.boundaries[0] or pos.x > self.boundaries[1] \
 	or pos.y < self.boundaries[2] or pos.y > self.boundaries[3]:
-		level_controller.lose_ball(self)
+		level_controller.lose_ball()
 
 func _hit_bricks():
 	var bricks = self.get_colliding_bodies()

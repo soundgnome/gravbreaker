@@ -5,6 +5,7 @@ var space
 
 func _ready():
 	level_controller.set_space(self.get_viewport().find_world_2d().get_space())
+	level_controller.start_game(self)
 	self.set_process(true)
 
 func _process(delta):
