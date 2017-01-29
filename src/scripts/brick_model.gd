@@ -8,7 +8,6 @@ func _ready():
 func hit():
 	self.hit_points -= 1
 	if hit_points == 0:
-		sound_controller.sfx('break')
 		level_controller.remove_brick(self)
 	else:
 		sound_controller.sfx('bounce')

@@ -26,8 +26,16 @@ func _ready():
 func add_brick(brick):
 	self.brick_count += 1
 
-func end_game(ball):
+func end_game(won):
 	self.ball.queue_free()
+	self.level_node.queue_free()
+	if won:
+		sound_controller.sfx('victory')
+		self.nodes['user_message'].say('YOU WIN!', 'success')
+	else:
+		sound_controller.sfx('gameover')
+		self.nodes['user_message'].say('GAME OVER', 'failure')
+
 
 func lose_ball():
 	if self.spare_ball_count > 0:
@@ -36,11 +44,11 @@ func lose_ball():
 		self.spare_ball_count -= 1
 		self.reset_ball()
 	else:
-		self.end_game()
+		self.end_game(false)
 
 func next_level():
 	if self.current_level == self.last_level:
-		pass
+		self.end_game(true)
 	else:
 		sound_controller.sfx('newlevel')
 		self.current_level += 1
@@ -58,6 +66,8 @@ func remove_brick(brick):
 	self.brick_count -= 1
 	if self.brick_count == 0:
 		self.next_level()
+	else:
+		sound_controller.sfx('break')
 
 func reset_ball():
 	self.set_gravity('none')

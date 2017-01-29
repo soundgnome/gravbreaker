@@ -1,16 +1,20 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://snd/bounce.smp" type="Sample" id=1]
 [ext_resource path="res://snd/break.smp" type="Sample" id=2]
-[ext_resource path="res://snd/newlevel.smp" type="Sample" id=3]
-[ext_resource path="res://snd/scratch.smp" type="Sample" id=4]
+[ext_resource path="res://snd/gameover.smp" type="Sample" id=3]
+[ext_resource path="res://snd/newlevel.smp" type="Sample" id=4]
+[ext_resource path="res://snd/scratch.smp" type="Sample" id=5]
+[ext_resource path="res://snd/victory.smp" type="Sample" id=6]
 
 [sub_resource type="SampleLibrary" id=1]
 
 samples/bounce = { "db":0.0, "pitch":1.0, "sample":ExtResource( 1 ) }
 samples/break = { "db":0.0, "pitch":1.0, "sample":ExtResource( 2 ) }
-samples/newlevel = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
-samples/scratch = { "db":0.0, "pitch":1.0, "sample":ExtResource( 4 ) }
+samples/gameover = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/newlevel = { "db":0.0, "pitch":1.0, "sample":ExtResource( 4 ) }
+samples/scratch = { "db":0.0, "pitch":1.0, "sample":ExtResource( 5 ) }
+samples/victory = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
 
 [node name="sfx" type="SamplePlayer"]
 
