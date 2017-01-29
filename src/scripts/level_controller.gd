@@ -29,6 +29,7 @@ func add_brick(brick):
 func end_game(won):
 	self.ball.queue_free()
 	self.level_node.queue_free()
+	self.set_gravity('none')
 	if won:
 		sound_controller.sfx('victory')
 		self.nodes['user_message'].say('YOU WIN!', 'success')
@@ -79,6 +80,7 @@ func set_ball(ball):
 
 func set_gravity(direction):
 	self.physics.area_set_param(self.space, self.physics.AREA_PARAM_GRAVITY_VECTOR, self.vectors[direction])
+	self.nodes['gravity_view'].show(direction)
 
 func set_space(space):
 	self.space = space
